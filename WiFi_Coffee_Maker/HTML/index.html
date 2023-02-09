@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html {
+            background-color: #f3f3f3;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        div *{
+            font-family: 'Courier New', Courier, monospace;
+            font-size: xx-large;
+            border-radius: 5px;
+            border: solid #858585;
+            border-style:double;
+            background-color:  white;
+        }
+
+        #queue {
+            font-size: xx-large;
+            display: flex;
+            justify-content: center;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 8%;
+        }
+
+        #Clear {
+            margin-top: 15%;
+            background-color: #ffc6c6;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Settings">
+        <select id="hourSelect">
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+        <select id="minuteSelect">
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+        </select>
+        <select id="AM_PM">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+        </select>
+        <select id="sizeSelect">
+            <option value="8oz">8oz</option>
+            <option value="12oz">12oz</option>
+            <option value="16oz">16oz</option>
+        </select>
+    </div>
+    <div><button onclick="addTime()" id="button">Place Order</button></div>
+    <div id="queue"></div>
+    <div><button id="Clear" onclick="clearOrder()">Clear Order</button></div>
+
+    <script>
+        var time = "";
+        var orderPending = false;
+        document.getElementById("queue").innerHTML = "There is no pending order..."
+
+        function addTime() {
+            pendingOrder = true;
+            time = document.getElementById("hourSelect").value;
+            time += ":" + document.getElementById("minuteSelect").value;
+            time += " " + document.getElementById("AM_PM").value;
+            document.getElementById("queue").innerHTML = ("Your " + document.getElementById("sizeSelect").value
+                + " coffee will be prepared at " + time + "\n");
+        }
+
+        function clearOrder() {
+            pendingOrder = false;
+            document.getElementById("queue").innerHTML = "There is no pending order..."
+        }
+    </script>
+</body>
+
+</html>
